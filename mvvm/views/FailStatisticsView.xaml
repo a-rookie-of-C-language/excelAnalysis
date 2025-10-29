@@ -1,0 +1,451 @@
+<UserControl x:Class="excel.mvvm.views.FailStatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 页面标题 -->
+        <Border Grid.Row="0" 
+                Background="#FAFAFA" 
+                BorderBrush="#E8E8E8" 
+                BorderThickness="0,0,0,1" 
+                Padding="0,20">
+            <StackPanel>
+                <TextBlock Text="挂科统计分析" 
+                          FontSize="24" 
+                          FontWeight="Bold" 
+                          Foreground="#333333" 
+                          HorizontalAlignment="Center"/>
+                <TextBlock Text="统计分析学生挂科情况，识别问题课程和风险学生" 
+                          FontSize="14" 
+                          Foreground="#666666" 
+                          HorizontalAlignment="Center" 
+                          Margin="0,8,0,0"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- 主要内容区域 -->
+        <ScrollViewer Grid.Row="1" 
+                     VerticalScrollBarVisibility="Auto" 
+                     HorizontalScrollBarVisibility="Disabled"
+                     Padding="20">
+            <StackPanel>
+                
+                <!-- 挂科统计卡片 -->
+                <Grid Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- 挂科总人数 -->
+                    <Border Grid.Column="0" 
+                            Background="White" 
+                            BorderBrush="#E8E8E8" 
+                            BorderThickness="1" 
+                            CornerRadius="8" 
+                            Padding="20" 
+                            Margin="0,0,10,0">
+                        <StackPanel>
+                            <TextBlock Text="挂科总人数" 
+                                      FontSize="14" 
+                                      Foreground="#666666"/>
+                            <TextBlock Text="163" 
+                                      FontSize="28" 
+                                      FontWeight="Bold" 
+                                      Foreground="#FF4D4F" 
+                                      Margin="0,8,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- 挂科率 -->
+                    <Border Grid.Column="1" 
+                            Background="White" 
+                            BorderBrush="#E8E8E8" 
+                            BorderThickness="1" 
+                            CornerRadius="8" 
+                            Padding="20" 
+                            Margin="5,0">
+                        <StackPanel>
+                            <TextBlock Text="挂科率" 
+                                      FontSize="14" 
+                                      Foreground="#666666"/>
+                            <TextBlock Text="13.2%" 
+                                      FontSize="28" 
+                                      FontWeight="Bold" 
+                                      Foreground="#FF7A45" 
+                                      Margin="0,8,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- 重修人数 -->
+                    <Border Grid.Column="2" 
+                            Background="White" 
+                            BorderBrush="#E8E8E8" 
+                            BorderThickness="1" 
+                            CornerRadius="8" 
+                            Padding="20" 
+                            Margin="5,0">
+                        <StackPanel>
+                            <TextBlock Text="重修人数" 
+                                      FontSize="14" 
+                                      Foreground="#666666"/>
+                            <TextBlock Text="89" 
+                                      FontSize="28" 
+                                      FontWeight="Bold" 
+                                      Foreground="#FA8C16" 
+                                      Margin="0,8,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- 风险学生 -->
+                    <Border Grid.Column="3" 
+                            Background="White" 
+                            BorderBrush="#E8E8E8" 
+                            BorderThickness="1" 
+                            CornerRadius="8" 
+                            Padding="20" 
+                            Margin="10,0,0,0">
+                        <StackPanel>
+                            <TextBlock Text="风险学生" 
+                                      FontSize="14" 
+                                      Foreground="#666666"/>
+                            <TextBlock Text="34" 
+                                      FontSize="28" 
+                                      FontWeight="Bold" 
+                                      Foreground="#722ED1" 
+                                      Margin="0,8,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                
+                <!-- 挂科课程排行和趋势分析 -->
+                <Grid Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- 挂科课程排行 -->
+                    <Border Grid.Column="0" 
+                            Background="White" 
+                            BorderBrush="#E8E8E8" 
+                            BorderThickness="1" 
+                            CornerRadius="8" 
+                            Padding="20" 
+                            Margin="0,0,10,0">
+                        <StackPanel>
+                            <TextBlock Text="挂科课程排行榜" 
+                                      FontSize="16" 
+                                      FontWeight="SemiBold" 
+                                      Foreground="#333333" 
+                                      Margin="0,0,0,20"/>
+                            
+                            <StackPanel>
+                                <!-- 挂科课程项目 -->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" 
+                                           Background="#FF4D4F" 
+                                           CornerRadius="12" 
+                                           Width="24" 
+                                           Height="24">
+                                        <TextBlock Text="1" 
+                                                  HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center" 
+                                                  FontWeight="Bold" 
+                                                  Foreground="White"/>
+                                    </Border>
+                                    <TextBlock Grid.Column="1" 
+                                              Text="高等数学" 
+                                              Margin="12,0" 
+                                              VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" 
+                                              Text="45人" 
+                                              FontWeight="SemiBold" 
+                                              Foreground="#FF4D4F" 
+                                              VerticalAlignment="Center"/>
+                                </Grid>
+                                
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" 
+                                           Background="#FF7A45" 
+                                           CornerRadius="12" 
+                                           Width="24" 
+                                           Height="24">
+                                        <TextBlock Text="2" 
+                                                  HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center" 
+                                                  FontWeight="Bold" 
+                                                  Foreground="White"/>
+                                    </Border>
+                                    <TextBlock Grid.Column="1" 
+                                              Text="线性代数" 
+                                              Margin="12,0" 
+                                              VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" 
+                                              Text="32人" 
+                                              FontWeight="SemiBold" 
+                                              Foreground="#FF7A45" 
+                                              VerticalAlignment="Center"/>
+                                </Grid>
+                                
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" 
+                                           Background="#FA8C16" 
+                                           CornerRadius="12" 
+                                           Width="24" 
+                                           Height="24">
+                                        <TextBlock Text="3" 
+                                                  HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center" 
+                                                  FontWeight="Bold" 
+                                                  Foreground="White"/>
+                                    </Border>
+                                    <TextBlock Grid.Column="1" 
+                                              Text="大学物理" 
+                                              Margin="12,0" 
+                                              VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" 
+                                              Text="28人" 
+                                              FontWeight="SemiBold" 
+                                              Foreground="#FA8C16" 
+                                              VerticalAlignment="Center"/>
+                                </Grid>
+                                
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" 
+                                           Background="#FAAD14" 
+                                           CornerRadius="12" 
+                                           Width="24" 
+                                           Height="24">
+                                        <TextBlock Text="4" 
+                                                  HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center" 
+                                                  FontWeight="Bold" 
+                                                  Foreground="White"/>
+                                    </Border>
+                                    <TextBlock Grid.Column="1" 
+                                              Text="数据结构" 
+                                              Margin="12,0" 
+                                              VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" 
+                                              Text="23人" 
+                                              FontWeight="SemiBold" 
+                                              Foreground="#FAAD14" 
+                                              VerticalAlignment="Center"/>
+                                </Grid>
+                                
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" 
+                                           Background="#A0D911" 
+                                           CornerRadius="12" 
+                                           Width="24" 
+                                           Height="24">
+                                        <TextBlock Text="5" 
+                                                  HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center" 
+                                                  FontWeight="Bold" 
+                                                  Foreground="White"/>
+                                    </Border>
+                                    <TextBlock Grid.Column="1" 
+                                              Text="计算机组成原理" 
+                                              Margin="12,0" 
+                                              VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" 
+                                              Text="18人" 
+                                              FontWeight="SemiBold" 
+                                              Foreground="#A0D911" 
+                                              VerticalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- 挂科趋势分析 -->
+                    <Border Grid.Column="1" 
+                            Background="White" 
+                            BorderBrush="#E8E8E8" 
+                            BorderThickness="1" 
+                            CornerRadius="8" 
+                            Padding="20" 
+                            Margin="10,0,0,0">
+                        <StackPanel>
+                            <TextBlock Text="挂科趋势分析" 
+                                      FontSize="16" 
+                                      FontWeight="SemiBold" 
+                                      Foreground="#333333" 
+                                      Margin="0,0,0,20"/>
+                            <Rectangle Height="200" 
+                                      Fill="#F0F2F5" 
+                                      Stroke="#E8E8E8" 
+                                      StrokeDashArray="5,5"/>
+                            <TextBlock Text="挂科率变化趋势图" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" 
+                                      Foreground="#999999" 
+                                      Margin="0,-120,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                
+                <!-- 风险学生列表 -->
+                <Border Background="White" 
+                        BorderBrush="#E8E8E8" 
+                        BorderThickness="1" 
+                        CornerRadius="8" 
+                        Padding="20"
+                        Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="高风险学生预警" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold" 
+                                  Foreground="#333333" 
+                                  Margin="0,0,0,20"/>
+                        
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- 表头 -->
+                            <TextBlock Grid.Column="0" Text="学号" FontWeight="SemiBold" Padding="8"/>
+                            <TextBlock Grid.Column="1" Text="姓名" FontWeight="SemiBold" Padding="8"/>
+                            <TextBlock Grid.Column="2" Text="挂科门数" FontWeight="SemiBold" Padding="8"/>
+                            <TextBlock Grid.Column="3" Text="风险等级" FontWeight="SemiBold" Padding="8"/>
+                            <TextBlock Grid.Column="4" Text="操作" FontWeight="SemiBold" Padding="8"/>
+                        </Grid>
+                        
+                        <Border BorderBrush="#E8E8E8" BorderThickness="0,1,0,0" Margin="0,8"/>
+                        
+                        <!-- 示例数据行 -->
+                        <Grid Margin="0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="0" Text="2021001" Padding="8"/>
+                            <TextBlock Grid.Column="1" Text="张三" Padding="8"/>
+                            <TextBlock Grid.Column="2" Text="3门" Foreground="#FF4D4F" Padding="8"/>
+                            <Border Grid.Column="3" 
+                                   Background="#FF4D4F" 
+                                   CornerRadius="4" 
+                                   Padding="8,4" 
+                                   Margin="8">
+                                <TextBlock Text="高风险" 
+                                          Foreground="White" 
+                                          FontSize="12" 
+                                          HorizontalAlignment="Center"/>
+                            </Border>
+                            <Button Grid.Column="4" 
+                                   Content="查看详情" 
+                                   Background="#1890FF" 
+                                   Foreground="White" 
+                                   BorderThickness="0" 
+                                   Padding="12,6" 
+                                   Margin="8"/>
+                        </Grid>
+                        
+                        <Grid Margin="0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="0" Text="2021002" Padding="8"/>
+                            <TextBlock Grid.Column="1" Text="李四" Padding="8"/>
+                            <TextBlock Grid.Column="2" Text="2门" Foreground="#FA8C16" Padding="8"/>
+                            <Border Grid.Column="3" 
+                                   Background="#FA8C16" 
+                                   CornerRadius="4" 
+                                   Padding="8,4" 
+                                   Margin="8">
+                                <TextBlock Text="中风险" 
+                                          Foreground="White" 
+                                          FontSize="12" 
+                                          HorizontalAlignment="Center"/>
+                            </Border>
+                            <Button Grid.Column="4" 
+                                   Content="查看详情" 
+                                   Background="#1890FF" 
+                                   Foreground="White" 
+                                   BorderThickness="0" 
+                                   Padding="12,6" 
+                                   Margin="8"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- 操作按钮区域 -->
+                <StackPanel Orientation="Horizontal" 
+                           HorizontalAlignment="Center">
+                    <Button Content="生成预警报告" 
+                           Background="#FF4D4F" 
+                           Foreground="White" 
+                           BorderThickness="0" 
+                           Padding="20,10" 
+                           Margin="0,0,8,0"/>
+                    <Button Content="导出挂科名单" 
+                           Background="White" 
+                           Foreground="#FF4D4F" 
+                           BorderBrush="#FF4D4F" 
+                           BorderThickness="1" 
+                           Padding="20,10" 
+                           Margin="8,0"/>
+                    <Button Content="发送预警通知" 
+                           Background="White" 
+                           Foreground="#FA8C16" 
+                           BorderBrush="#FA8C16" 
+                           BorderThickness="1" 
+                           Padding="20,10" 
+                           Margin="8,0,0,0"/>
+                </StackPanel>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

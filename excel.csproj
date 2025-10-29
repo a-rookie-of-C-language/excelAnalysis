@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
@@ -6,19 +6,35 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     </PropertyGroup>
 
-    <ItemGroup>
+  <ItemGroup>
+      <PackageReference Include="EPPlus" Version="8.2.0" />
+      <PackageReference Include="LLamaSharp" Version="0.15.0" />
+      <PackageReference Include="LLamaSharp.Backend.Cpu" Version="0.15.0" />
       <PackageReference Include="MaterialDesignColors" Version="5.*" />
       <PackageReference Include="MaterialDesignThemes" Version="5.*" />
       <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.0-rc.1.25451.107" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
       <PackageReference Include="NPOI" Version="2.7.5" />
       <PackageReference Include="SharpVectors" Version="1.8.5" />
       <Resource Include="svg\*" />
-    </ItemGroup>
+      <Resource Include="image\image.png" />
+  </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="image\" />
       <Folder Include="sqlite\" />
+    </ItemGroup>
+
+    <!-- 运行时复制数据库文件到输出目录 -->
+    <ItemGroup>
+      <None Include="sqlite\sqlite.db">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

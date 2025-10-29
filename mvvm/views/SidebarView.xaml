@@ -1,0 +1,116 @@
+<UserControl x:Class="excel.mvvm.views.SidebarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="250">
+
+    <UserControl.Resources>
+        <!-- 导航项样式 -->
+        <Style x:Key="NavigationItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Border"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Margin="8,2"
+                                CornerRadius="8"
+                                Padding="16,12">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="24" />
+                                    <ColumnDefinition Width="16" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- 图标 -->
+                                <svgc:SvgViewbox Grid.Column="0"
+                                                 x:Name="Icon"
+                                                 Width="20"
+                                                 Height="20"
+                                                 Source="{Binding IconPath}" />
+
+                                <!-- 文本 -->
+                                <TextBlock Grid.Column="2"
+                                           x:Name="Text"
+                                           Text="{Binding Name}"
+                                           FontSize="14"
+                                           FontWeight="Medium"
+                                           Foreground="#333333"
+                                           VerticalAlignment="Center" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#F0F2F5" />
+                                <Setter TargetName="Text" Property="Foreground" Value="#1890FF" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#E6F7FF" />
+                                <Setter TargetName="Text" Property="Foreground" Value="#1890FF" />
+                                <Setter TargetName="Text" Property="FontWeight" Value="SemiBold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Border Background="White"
+            BorderBrush="#E8E8E8"
+            BorderThickness="0,0,1,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+
+            <!-- 头部Logo区域 -->
+            <Border Grid.Row="0"
+                    Background="#FAFAFA"
+                    BorderBrush="#E8E8E8"
+                    BorderThickness="0,0,0,1">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="学生成绩系统"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="#333333"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Border>
+
+            <!-- 导航菜单 -->
+            <ListBox Grid.Row="1"
+                     x:Name="NavigationListBox"
+                     ItemsSource="{Binding NavigationItems}"
+                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                     ItemContainerStyle="{StaticResource NavigationItemStyle}"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     Margin="0,16,0,0">
+            </ListBox>
+
+            <!-- 底部信息 -->
+            <Border Grid.Row="2"
+                    Background="#FAFAFA"
+                    BorderBrush="#E8E8E8"
+                    BorderThickness="0,1,0,0">
+                <TextBlock Text="© 2025 学生管理系统"
+                           FontSize="12"
+                           Foreground="#999999"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>
